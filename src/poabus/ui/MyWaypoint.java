@@ -10,6 +10,7 @@ import org.jxmapviewer.viewer.GeoPosition;
  *
  * @author Martin Steiger, Marcelo Cohen
  */
+
 public class MyWaypoint extends DefaultWaypoint {
 
     private final Color color;

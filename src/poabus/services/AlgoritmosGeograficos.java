@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package poabus.services;
 
 import org.jxmapviewer.viewer.GeoPosition;
 
-/**
- *
- * @author Sandro
- */
 public class AlgoritmosGeograficos {
 
     public static final double R = 6372.8; // In kilometers
@@ -28,5 +19,5 @@ public class AlgoritmosGeograficos {
 
     public static double calcDistancia(GeoPosition p1, GeoPosition p2) {
         return haversine(p1.getLatitude(), p1.getLongitude(), p2.getLatitude(), p2.getLongitude());
-    }
+    }        
 }

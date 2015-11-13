@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package poabus.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author henri
- */
 public class Linha {
     private int id;
     private String nome;
@@ -20,9 +11,7 @@ public class Linha {
     public Linha() {
         this.paradas = new ArrayList<Parada>();
     }
-
-    
-    
+        
     public int getId() {
         return id;
     }
@@ -46,5 +35,9 @@ public class Linha {
     public void setParadas(List<Parada> paradas) {
         this.paradas = paradas;
     }
-    
+
+    @Override
+    public String toString() {
+        return nome;
+    }            
 }
