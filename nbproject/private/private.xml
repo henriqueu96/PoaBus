@@ -4,7 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Projetos/PoaBus/src/poabus/ui/JanelaConsulta.java</file>
-            <file>file:/D:/Projetos/PoaBus/src/poabus/ui/GerenciadorMapa.java</file>
+            <file>file:/D:/Projetos/PoaBus/src/poabus/domain/Linha.java</file>
+            <file>file:/D:/Projetos/PoaBus/src/poabus/services/LinhasService.java</file>
         </group>
     </open-files>
 </project-private>

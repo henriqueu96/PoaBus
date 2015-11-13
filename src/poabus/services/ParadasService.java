@@ -20,7 +20,7 @@ public class ParadasService implements IParadasService {
     public Parada getParadaNearLocation(double x, double y) {
         List<Parada> todasParadas = _context.GetAllParadas();
         Parada paradaProxima = null;
-        double menor = 0;
+        double menor = Double.MAX_VALUE;
         for(Parada p : todasParadas){
             double valor = AlgoritmosGeograficos.haversine(y, x, p.getLatitude(), p.getLongitude());
             if(valor < menor){

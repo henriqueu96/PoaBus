@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
+// import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +24,7 @@ import org.jxmapviewer.viewer.GeoPosition;
 import org.jxmapviewer.viewer.TileFactoryInfo;
 import org.jxmapviewer.viewer.WaypointPainter;
 import org.jxmapviewer.viewer.WaypointRenderer;
+
 
 /**
  * Classe para gerenciar um mapa
@@ -45,6 +46,8 @@ public class GerenciadorMapa {
     private double valorMenor = 0;
     private double valorMaior = 255;
 
+    //private List<Parada> paradas = new ArrayList<Parada>();    
+
     public enum FonteImagens {
 
         OpenStreetMap, VirtualEarth
@@ -56,7 +59,7 @@ public class GerenciadorMapa {
      * @param centro centro do mapa
      * @param fonte fonte das imagens (FonteImagens.OpenStreetMap ou FonteImagens.VirtualEarth)
      */
-    public GerenciadorMapa(GeoPosition centro, FonteImagens fonte) {
+    public GerenciadorMapa(GeoPosition centro, FonteImagens fonte) {        
         jXMapKit = new JXMapKit();
         TileFactoryInfo info = null;
         if (fonte == FonteImagens.OpenStreetMap) {
@@ -113,22 +116,21 @@ public class GerenciadorMapa {
                 Point2D pont2 = map.convertGeoPositionToPoint(selBorda);
                 int x = (int) point.getX();
                 int y = (int) point.getY();
-                int raio = (int) Math.sqrt(Math.pow(point.getX() - pont2.getX(), 2)
-                        + Math.pow(point.getY() - pont2.getY(), 2));
+                //int raio = (int) Math.sqrt(Math.pow(point.getX() - pont2.getX(), 2)
+                        //+ Math.pow(point.getY() - pont2.getY(), 2));
                 //int r = raio / 2;
-                
+
                 g.setStroke(new BasicStroke(2));
-                
+
                 // linha cinza
-                g.setColor(Color.lightGray);
-                g.draw(new Line2D.Double(x, y, pont2.getX(), pont2.getY()));
-                
+                //g.setColor(Color.lightGray);
+                //g.draw(new Line2D.Double(x, y, pont2.getX(), pont2.getY()));
                 g.setColor(Color.BLUE);
                 g.fill(new Ellipse2D.Float(x - 3, y - 3, 6, 6));
-                g.draw(new Ellipse2D.Float(x - raio, y - raio, 2*raio, 2*raio));
+                //g.draw(new Ellipse2D.Float(x - raio, y - raio, 2*raio, 2*raio));
 
                 //g.drawString(getRaio() + " metros", x + r, y + r);
-                g.drawString(getRaio() + " metros", (int)pont2.getX() + 8, (int)pont2.getY() + 25);
+                //g.drawString(getRaio() + " metros", (int)pont2.getX() + 8, (int)pont2.getY() + 25);                     
             }
         };
 
@@ -222,6 +224,7 @@ public class GerenciadorMapa {
             }
         }
 
+        @Override
         public void mouseDragged(MouseEvent e) {
             // Arrasta com o botão 3 para definir o raio
             if (lastButton == MouseEvent.BUTTON3) {
