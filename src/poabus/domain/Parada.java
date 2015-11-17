@@ -40,6 +40,15 @@ public class Parada {
     public List<Linha> getLinhas() {
         return linhas;
     }
+    
+    public boolean hasLinha(Linha linha){
+        for(Linha l : linhas){
+            if(l == linha){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void setLinhas(List<Linha> linhas) {
         this.linhas = linhas;

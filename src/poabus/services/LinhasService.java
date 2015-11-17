@@ -26,39 +26,40 @@ public class LinhasService implements ILinhasService {
         return linhasFinal;
     }
 
-    public List<Linha> getLinhasPassamParadas(List<Parada> paradas) {     
-        /*        
-        List<Linha> linhasTodas = new ArrayList<Linha>();
-        List<Linha> linhasFinal = new ArrayList<Linha>();
+    public List<Linha> getLinhasPassamParadas(List<Parada> paradas) {                     
+        List<Linha> todasLinhas = new ArrayList<Linha>();
+        List<Linha> finalLinhas = new ArrayList<Linha>();
+                
+        for(Parada p : paradas){            
+            todasLinhas.addAll(p.getLinhas());
+        }
         
-        //Adicionando TODAS paradas ao array
-        for(Parada p : paradas){
-            linhasTodas.addAll(p.getLinhas());
-        }        
-        
-        // Para cada parada do array pegue o elemento.
-        for(int i = 0; i < linhasTodas.size()-1; i++){            
+        for(Linha l : todasLinhas){
             int cont = 0;
-            Linha l = linhasTodas.get(i);
-                // Para cada linha do array pegue o elemento e compare com o anterior
-                for(int j = 0; j < linhasTodas.size()-1; j++){                    
-                    Linha proximaLinha = linhasTodas.get(i+1);
-                    
-                    // Se os Id são iguais, icremente o contador do elemento em questão
-                    if(l.getId() == proximaLinha.getId()){
-                        cont++;                        
-                    }
+            for(Parada p : paradas){
+                if(l.hasParada(p)){
+                    cont++;
                 }
-             
-            // Se o elemento tem o contador igual ao numero de paradas passado, então ele passa em todas as paradas.
-            if(cont == paradas.size()){
-                linhasFinal.add(l);
             }
-        }                
-        return linhasFinal;
-        
-        */
-        return null;
+            if(cont == paradas.size()){
+                if(!finalLinhas.contains(l)){                    
+                    finalLinhas.add(l);
+                }                
+            }
+        }                      
+              
+        return finalLinhas;
     }
-    
+
+    public List<Linha> getTodasLinhasPassamParadas(List<Parada> paradas) {
+        List<Linha> linhasFinal = new ArrayList<Linha>();
+        for(Parada p : paradas){
+            for(Linha l : p.getLinhas()){
+                if(!linhasFinal.contains(l)){
+                    linhasFinal.add(l);
+                }
+            }            
+        }        
+        return linhasFinal;
+    }           
 }

@@ -116,9 +116,9 @@ public class GerenciadorMapa {
                 Point2D pont2 = map.convertGeoPositionToPoint(selBorda);
                 int x = (int) point.getX();
                 int y = (int) point.getY();
-                //int raio = (int) Math.sqrt(Math.pow(point.getX() - pont2.getX(), 2)
-                        //+ Math.pow(point.getY() - pont2.getY(), 2));
-                //int r = raio / 2;
+                int raio = (int) Math.sqrt(Math.pow(point.getX() - pont2.getX(), 2)
+                        + Math.pow(point.getY() - pont2.getY(), 2));
+                int r = raio / 2;
 
                 g.setStroke(new BasicStroke(2));
 
@@ -127,7 +127,7 @@ public class GerenciadorMapa {
                 //g.draw(new Line2D.Double(x, y, pont2.getX(), pont2.getY()));
                 g.setColor(Color.BLUE);
                 g.fill(new Ellipse2D.Float(x - 3, y - 3, 6, 6));
-                //g.draw(new Ellipse2D.Float(x - raio, y - raio, 2*raio, 2*raio));
+                g.draw(new Ellipse2D.Float(x - raio, y - raio, 2*raio, 2*raio));
 
                 //g.drawString(getRaio() + " metros", x + r, y + r);
                 //g.drawString(getRaio() + " metros", (int)pont2.getX() + 8, (int)pont2.getY() + 25);                     
@@ -173,6 +173,10 @@ public class GerenciadorMapa {
     // Retorna o raio da região selecionada (em metros)
     public int getRaio() {
         return (int) (AlgoritmosGeograficos.calcDistancia(selBorda, selCentro) * 1000);
+    }
+    
+    public double getRaioD(){
+        return AlgoritmosGeograficos.calcDistancia(selBorda, selCentro);
     }
 
     public void setIntervaloValores(double valMenor, double valMaior) {

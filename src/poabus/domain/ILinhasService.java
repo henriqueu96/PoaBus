@@ -5,4 +5,6 @@ import java.util.List;
 public interface ILinhasService {
     List<Linha> getAllLinhas();
     List<Linha> getLinhasPassamParadas(List<Parada> paradas);
+
+    public List<Linha> getTodasLinhasPassamParadas(List<Parada> paradasSelecionadas);
 }

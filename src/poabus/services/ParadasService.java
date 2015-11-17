@@ -1,5 +1,6 @@
 package poabus.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import poabus.data.PoaBusContext;
 import poabus.domain.IParadasService;
@@ -29,5 +30,17 @@ public class ParadasService implements IParadasService {
             }            
         }
         return paradaProxima;
+    }
+
+    public List<Parada> getParadasByRaio(double raio, double latitude, double longitude) {
+        List<Parada> paradas = _context.GetAllParadas();
+        List<Parada> resultado = new ArrayList<Parada>();
+        for(Parada p : paradas){
+            double distancia = AlgoritmosGeograficos.haversine(p.getLatitude(), p.getLongitude(), latitude, longitude);
+            if(distancia <= raio){
+                resultado.add(p);
+            }                
+        }
+        return resultado;
     }
 }

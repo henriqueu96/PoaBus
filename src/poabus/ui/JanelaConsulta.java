@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import org.jxmapviewer.viewer.GeoPosition;
 import poabus.domain.ILinhasService;
@@ -47,6 +48,8 @@ public class JanelaConsulta extends javax.swing.JFrame {
         btnTodasAsParadas = new javax.swing.JButton();
         btnAddParada = new javax.swing.JButton();
         btnAtualizaLinhas = new javax.swing.JButton();
+        btnAddByRaio = new javax.swing.JButton();
+        btnTodasLinhasSelecionadas = new javax.swing.JButton();
         painelMapa = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,13 +107,29 @@ public class JanelaConsulta extends javax.swing.JFrame {
         });
         painelMenu.add(btnAddParada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, -1));
 
-        btnAtualizaLinhas.setText("Atualizar Linhas");
+        btnAtualizaLinhas.setText("Filtrar Linhas");
         btnAtualizaLinhas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtualizaLinhasActionPerformed(evt);
             }
         });
         painelMenu.add(btnAtualizaLinhas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 130, -1));
+
+        btnAddByRaio.setText("Adicionar Por Raio");
+        btnAddByRaio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddByRaioActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnAddByRaio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 140, -1));
+
+        btnTodasLinhasSelecionadas.setText("Todas Linhas");
+        btnTodasLinhasSelecionadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTodasLinhasSelecionadasActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnTodasLinhasSelecionadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 130, -1));
 
         painelMapa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -179,6 +198,10 @@ public class JanelaConsulta extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         // TODO add your handling code here:
         List<MyWaypoint> lstPoints = new ArrayList<MyWaypoint>();
+        if(!lstModel.isEmpty()){
+        lstModel.clear();
+        }
+        paradasSelecionadas.clear();
         paradasSel.clear();
         gerenciador.setPontos(lstPoints);
         this.repaint();
@@ -195,22 +218,63 @@ public class JanelaConsulta extends javax.swing.JFrame {
         gerenciador.setPontos(paradasSel);
         this.repaint();
     }//GEN-LAST:event_btnAddParadaActionPerformed
-
+    
+    private DefaultListModel lstModel;
+    
     private void btnAtualizaLinhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizaLinhasActionPerformed
-        // TODO add your handling code here:                
+                   
         List<Linha> linhasDasParadas = _linhasService.getLinhasPassamParadas(paradasSelecionadas);
-        for(Linha l : linhasDasParadas){
-            System.out.println("Linha: " + l.getNome());
+             
+        lstModel = new DefaultListModel(); 
+        
+        if(linhasDasParadas.size() > 0){
+            for(Linha l : linhasDasParadas){            
+                lstModel.add(lstModel.size(), l);
+            }                           
         }
+        lstLinhas.setModel(lstModel);                        
     }//GEN-LAST:event_btnAtualizaLinhasActionPerformed
+
+    private void btnAddByRaioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddByRaioActionPerformed
+        // TODO add your handling code here:
+        List<MyWaypoint> lstPoints = new ArrayList<MyWaypoint>();
+        double raio = gerenciador.getRaioD();        
+        GeoPosition centro = gerenciador.getSelecaoCentro();        
+        List<Parada> paradas = _paradasService.getParadasByRaio(raio, centro.getLatitude(), centro.getLongitude());
+        paradasSelecionadas.addAll(paradas);
+        for(Parada p : paradasSelecionadas){
+            double valor = 250; // ex: valor da consulta (criminalidade ou dist�ncia)
+            GeoPosition loc = new GeoPosition(p.getLatitude(), p.getLongitude()); // ex: localiza��o da parada
+            lstPoints.add(new MyWaypoint(Color.RED, valor, loc));
+        }
+        GeoPosition ptCentro = gerenciador.getSelecaoCentro();
+        
+        gerenciador.setPontos(lstPoints);
+        this.repaint();
+    }//GEN-LAST:event_btnAddByRaioActionPerformed
+
+    private void btnTodasLinhasSelecionadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTodasLinhasSelecionadasActionPerformed
+        // TODO add your handling code here:
+        List<Linha> todasLinhas = _linhasService.getTodasLinhasPassamParadas(paradasSelecionadas);
+        lstModel = new DefaultListModel(); 
+        
+        if(todasLinhas.size() > 0){
+            for(Linha l : todasLinhas){            
+                lstModel.add(lstModel.size(), l);
+            }                           
+        }
+        lstLinhas.setModel(lstModel);  
+    }//GEN-LAST:event_btnTodasLinhasSelecionadasActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddByRaio;
     private javax.swing.JButton btnAddParada;
     private javax.swing.JButton btnAtualizaLinhas;
     private javax.swing.JButton btnBuscarLinha;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnTodasAsParadas;
+    private javax.swing.JButton btnTodasLinhasSelecionadas;
     private javax.swing.JComboBox comboLinhas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -228,6 +292,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
     private List<MyWaypoint> paradasSel;
 
     private void initMyComponents() {
+        lstModel = new DefaultListModel();
         GeoPosition poa = new GeoPosition(-30.05, -51.18);
         gerenciador = new GerenciadorMapa(poa, GerenciadorMapa.FonteImagens.VirtualEarth);
         paradasSelecionadas = new ArrayList<Parada>();

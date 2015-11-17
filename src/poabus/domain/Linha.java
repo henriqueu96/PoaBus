@@ -35,6 +35,13 @@ public class Linha {
     public void setParadas(List<Parada> paradas) {
         this.paradas = paradas;
     }
+    
+    public boolean hasParada(Parada parada){
+        for(Parada p : paradas){
+            if(p == parada){ return true; }
+        }        
+        return false;
+    }
 
     @Override
     public String toString() {
