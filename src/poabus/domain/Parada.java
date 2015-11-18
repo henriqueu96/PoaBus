@@ -52,5 +52,12 @@ public class Parada {
 
     public void setLinhas(List<Linha> linhas) {
         this.linhas = linhas;
-    }                      
+    }              
+
+    @Override
+    public String toString() {
+        return "Parada{" + "id=" + id + '}';
+    }
+    
+    
 }

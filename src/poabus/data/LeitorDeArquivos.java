@@ -74,6 +74,7 @@ public class LeitorDeArquivos {
             l1 = new Linha();
             l1.setId(Integer.parseInt(d[0]));
             l1.setNome(d[1]);
+            l1.setTipo(d[3].charAt(1));
 
             linhas.add(l1);
         }

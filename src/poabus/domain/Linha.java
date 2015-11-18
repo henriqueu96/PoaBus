@@ -7,10 +7,19 @@ public class Linha {
     private int id;
     private String nome;
     private List<Parada> paradas;
+    private char tipo;
 
     public Linha() {
         this.paradas = new ArrayList<Parada>();
     }
+
+    public char getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(char tipo) {
+        this.tipo = tipo;
+    }        
         
     public int getId() {
         return id;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jxmapviewer.viewer.GeoPosition;
 import poabus.domain.ILinhasService;
 import poabus.domain.IParadasService;
@@ -20,6 +21,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
      * Creates new form JanelaConsulta
      */
     public JanelaConsulta() {
+        super("PoaBus");
         _paradasService = new ParadasService();
         _linhasService = new LinhasService();
         initComponents();
@@ -50,14 +52,20 @@ public class JanelaConsulta extends javax.swing.JFrame {
         btnAtualizaLinhas = new javax.swing.JButton();
         btnAddByRaio = new javax.swing.JButton();
         btnTodasLinhasSelecionadas = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnAtualizarLinha = new javax.swing.JButton();
+        btnLotacoes = new javax.swing.JButton();
+        btnDetalhes = new javax.swing.JButton();
+        btnHisto = new javax.swing.JButton();
         painelMapa = new javax.swing.JPanel();
+        btnAutores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         painelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Selecione a Linha:");
-        painelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        painelMenu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         btnBuscarLinha.setText("Buscar");
         btnBuscarLinha.addActionListener(new java.awt.event.ActionListener() {
@@ -65,22 +73,22 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnBuscarLinhaActionPerformed(evt);
             }
         });
-        painelMenu.add(btnBuscarLinha, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 260, -1));
+        painelMenu.add(btnBuscarLinha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 140, -1));
 
         comboLinhas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboLinhasActionPerformed(evt);
             }
         });
-        painelMenu.add(comboLinhas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 260, -1));
+        painelMenu.add(comboLinhas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, -1));
 
         jScrollPane1.setViewportView(lstLinhas);
 
-        painelMenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 260, 73));
-        painelMenu.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 260, 10));
+        painelMenu.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 270, 150));
+        painelMenu.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 260, 10));
 
         jLabel2.setText("Linhas das paradas selecionadas");
-        painelMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, -1));
+        painelMenu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,8 +96,8 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnLimparActionPerformed(evt);
             }
         });
-        painelMenu.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 260, -1));
-        painelMenu.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 260, 10));
+        painelMenu.add(btnLimpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 260, -1));
+        painelMenu.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 260, 10));
 
         btnTodasAsParadas.setText("Todas as Paradas");
         btnTodasAsParadas.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +105,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnTodasAsParadasActionPerformed(evt);
             }
         });
-        painelMenu.add(btnTodasAsParadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 260, -1));
+        painelMenu.add(btnTodasAsParadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 260, -1));
 
         btnAddParada.setText("Adicionar Parada");
         btnAddParada.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +113,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnAddParadaActionPerformed(evt);
             }
         });
-        painelMenu.add(btnAddParada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, -1));
+        painelMenu.add(btnAddParada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 140, -1));
 
         btnAtualizaLinhas.setText("Filtrar Linhas");
         btnAtualizaLinhas.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +121,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnAtualizaLinhasActionPerformed(evt);
             }
         });
-        painelMenu.add(btnAtualizaLinhas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 130, -1));
+        painelMenu.add(btnAtualizaLinhas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 130, -1));
 
         btnAddByRaio.setText("Adicionar Por Raio");
         btnAddByRaio.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +129,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnAddByRaioActionPerformed(evt);
             }
         });
-        painelMenu.add(btnAddByRaio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 140, -1));
+        painelMenu.add(btnAddByRaio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 140, -1));
 
         btnTodasLinhasSelecionadas.setText("Todas Linhas");
         btnTodasLinhasSelecionadas.addActionListener(new java.awt.event.ActionListener() {
@@ -129,31 +137,76 @@ public class JanelaConsulta extends javax.swing.JFrame {
                 btnTodasLinhasSelecionadasActionPerformed(evt);
             }
         });
-        painelMenu.add(btnTodasLinhasSelecionadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 130, -1));
+        painelMenu.add(btnTodasLinhasSelecionadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 130, -1));
+
+        jButton1.setText("Adicionar Linha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        painelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, -1));
+
+        btnAtualizarLinha.setText("Atualizar");
+        btnAtualizarLinha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarLinhaActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnAtualizarLinha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 140, -1));
+
+        btnLotacoes.setText("Lotações");
+        btnLotacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLotacoesActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnLotacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 140, -1));
+
+        btnDetalhes.setText("Ver Detalhes");
+        btnDetalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetalhesActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnDetalhes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 140, -1));
+
+        btnHisto.setText("Ver Histograma");
+        btnHisto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoActionPerformed(evt);
+            }
+        });
+        painelMenu.add(btnHisto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 130, -1));
 
         painelMapa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnAutores.setText("+");
+        btnAutores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAutoresActionPerformed(evt);
+            }
+        });
+        painelMapa.add(btnAutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 50, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(painelMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(painelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(painelMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 611, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(painelMapa, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
+                    .addComponent(painelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                    .addComponent(painelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -180,10 +233,10 @@ public class JanelaConsulta extends javax.swing.JFrame {
         List<MyWaypoint> lstPoints = new ArrayList<MyWaypoint>();
         List<Parada> paradas = l.getParadas();
         
-        for (Parada p : paradas) {
+        for (Parada p : paradas) {            
             double valor = 250; // ex: valor da consulta (criminalidade ou dist�ncia)
             GeoPosition loc = new GeoPosition(p.getLatitude(), p.getLongitude()); // ex: localiza��o da parada
-            lstPoints.add(new MyWaypoint(Color.BLUE, valor, loc));
+            lstPoints.add(new MyWaypoint(Color.green, valor, loc));           
         }
         GeoPosition ptCentro = gerenciador.getSelecaoCentro();
         gerenciador.setPontos(lstPoints);
@@ -265,17 +318,64 @@ public class JanelaConsulta extends javax.swing.JFrame {
         }
         lstLinhas.setModel(lstModel);  
     }//GEN-LAST:event_btnTodasLinhasSelecionadasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CadastradorDeLinha cadastro = new CadastradorDeLinha(_linhasService);
+        cadastro.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAtualizarLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarLinhaActionPerformed
+        // TODO add your handling code here:
+        comboLinhas.removeAllItems();
+        populaComboLinhas();
+        comboLinhas.repaint();
+    }//GEN-LAST:event_btnAtualizarLinhaActionPerformed
+
+    private void btnLotacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLotacoesActionPerformed
+        // TODO add your handling code here:
+        ExibeLotacoes lotacoes = new ExibeLotacoes(_linhasService);        
+        lotacoes.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnLotacoesActionPerformed
+
+    private void btnDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalhesActionPerformed
+        // TODO add your handling code here:
+        if(paradasSelecionadas.size() > 1){
+            JOptionPane.showMessageDialog(null, "Mais de uma parada selecionada!");
+            return;
+        }
+        Parada p = paradasSelecionadas.get(0);
+        ExibeDetalhes detalhes = new ExibeDetalhes(p);
+        detalhes.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnDetalhesActionPerformed
+
+    private void btnHistoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoActionPerformed
+        // TODO add your handling code here:
+        Grafico grafico = new Grafico(_linhasService.getAllLinhas());
+        grafico.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_btnHistoActionPerformed
+
+    private void btnAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoresActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Henrique Urruth, Kim dos Santos e Thomas Berquó");
+    }//GEN-LAST:event_btnAutoresActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddByRaio;
     private javax.swing.JButton btnAddParada;
     private javax.swing.JButton btnAtualizaLinhas;
+    private javax.swing.JButton btnAtualizarLinha;
+    private javax.swing.JButton btnAutores;
     private javax.swing.JButton btnBuscarLinha;
+    private javax.swing.JButton btnDetalhes;
+    private javax.swing.JButton btnHisto;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLotacoes;
     private javax.swing.JButton btnTodasAsParadas;
     private javax.swing.JButton btnTodasLinhasSelecionadas;
     private javax.swing.JComboBox comboLinhas;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -308,10 +408,14 @@ public class JanelaConsulta extends javax.swing.JFrame {
     }       
 
     private void populaComboLinhas() {
-        List<Linha> todasLinhas = _linhasService.getAllLinhas();
                         
+        List<Linha> todasLinhas = _linhasService.getAllLinhas();
+        List<Linha> lotacoes = _linhasService.getAllLotacoes();
+                                        
         for (Linha l : todasLinhas) {
-            comboLinhas.addItem(l);            
-        }
-    }        
+            if(l.getTipo() == 'O'){
+                comboLinhas.addItem(l);                        
+            }
+        }               
+    }              
 }

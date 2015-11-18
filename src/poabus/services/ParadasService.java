@@ -43,4 +43,13 @@ public class ParadasService implements IParadasService {
         }
         return resultado;
     }
+
+    public Parada getParadaById(int id) {
+        for(Parada p : _context.GetAllParadas()){
+            if(p.getId() == id){
+                return p;
+            }
+        }
+        return null;
+    }
 }

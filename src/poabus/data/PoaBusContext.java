@@ -35,4 +35,8 @@ public class PoaBusContext {
         }       
         return null;
     } 
+
+    public void addLinha(Linha l) {
+        linhas.add(l);
+    }
 }

@@ -62,4 +62,22 @@ public class LinhasService implements ILinhasService {
         }        
         return linhasFinal;
     }           
+
+    public void addLinha(String linhaName, List<Parada> paradasDaLinha, char lotacao) {
+        Linha l = new Linha();
+        l.setNome(linhaName);
+        l.setTipo(lotacao);
+        l.setParadas(paradasDaLinha);
+        _context.addLinha(l);
+    }
+
+    public List<Linha> getAllLotacoes() {
+        List<Linha> lotacoes = new ArrayList<Linha>();
+        for(Linha l : _context.GetAllLinhas()){
+            if(l.getTipo() == 'L'){
+                lotacoes.add(l);
+            }
+        }
+        return lotacoes;
+    }
 }
