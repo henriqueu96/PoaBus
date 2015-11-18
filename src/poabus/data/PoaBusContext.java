@@ -14,22 +14,22 @@ public class PoaBusContext {
         LeitorDeArquivos.LerArquivos(paradas, linhas);
     }
          
-    public ArrayList<Linha> GetAllLinhas() {
+    public ArrayList<Linha> getAllLinhas() {
         return linhas;          
     }
     
-    public Linha GetLinhaById(int id) {
+    public Linha getLinhaById(int id) {
         for(Linha lin : linhas){
             if(lin.getId() == id){ return lin; }
         }       
         return null;
     }
     
-    public ArrayList<Parada> GetAllParadas() {
+    public ArrayList<Parada> getAllParadas() {
         return paradas;          
     }
     
-    public Parada GetParadaById(int id) {
+    public Parada getParadaById(int id) {
         for(Parada par : paradas){
             if(par.getId() == id){ return par; }
         }       

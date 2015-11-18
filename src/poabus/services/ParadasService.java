@@ -15,11 +15,11 @@ public class ParadasService implements IParadasService {
     }
 
     public List<Parada> getAllParadas() {
-        return _context.GetAllParadas();
+        return _context.getAllParadas();
     }
 
     public Parada getParadaNearLocation(double x, double y) {
-        List<Parada> todasParadas = _context.GetAllParadas();
+        List<Parada> todasParadas = _context.getAllParadas();
         Parada paradaProxima = null;
         double menor = Double.MAX_VALUE;
         for(Parada p : todasParadas){
@@ -33,7 +33,7 @@ public class ParadasService implements IParadasService {
     }
 
     public List<Parada> getParadasByRaio(double raio, double latitude, double longitude) {
-        List<Parada> paradas = _context.GetAllParadas();
+        List<Parada> paradas = _context.getAllParadas();
         List<Parada> resultado = new ArrayList<Parada>();
         for(Parada p : paradas){
             double distancia = AlgoritmosGeograficos.haversine(p.getLatitude(), p.getLongitude(), latitude, longitude);
@@ -45,7 +45,7 @@ public class ParadasService implements IParadasService {
     }
 
     public Parada getParadaById(int id) {
-        for(Parada p : _context.GetAllParadas()){
+        for(Parada p : _context.getAllParadas()){
             if(p.getId() == id){
                 return p;
             }

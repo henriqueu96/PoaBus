@@ -16,7 +16,7 @@ public class LinhasService implements ILinhasService {
     }
            
     public List<Linha> getAllLinhas() {
-        List<Linha> linhasTodas = _context.GetAllLinhas();
+        List<Linha> linhasTodas = _context.getAllLinhas();
         List<Linha> linhasFinal = new ArrayList<Linha>();
         for(Linha l : linhasTodas){            
             if(l.getParadas().size() >= 1){
@@ -73,7 +73,7 @@ public class LinhasService implements ILinhasService {
 
     public List<Linha> getAllLotacoes() {
         List<Linha> lotacoes = new ArrayList<Linha>();
-        for(Linha l : _context.GetAllLinhas()){
+        for(Linha l : _context.getAllLinhas()){
             if(l.getTipo() == 'L'){
                 lotacoes.add(l);
             }

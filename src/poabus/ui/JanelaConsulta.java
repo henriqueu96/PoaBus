@@ -52,7 +52,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
         btnAtualizaLinhas = new javax.swing.JButton();
         btnAddByRaio = new javax.swing.JButton();
         btnTodasLinhasSelecionadas = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAddLinha = new javax.swing.JButton();
         btnAtualizarLinha = new javax.swing.JButton();
         btnLotacoes = new javax.swing.JButton();
         btnDetalhes = new javax.swing.JButton();
@@ -139,13 +139,13 @@ public class JanelaConsulta extends javax.swing.JFrame {
         });
         painelMenu.add(btnTodasLinhasSelecionadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, 130, -1));
 
-        jButton1.setText("Adicionar Linha");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddLinha.setText("Adicionar Linha");
+        btnAddLinha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddLinhaActionPerformed(evt);
             }
         });
-        painelMenu.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, -1));
+        painelMenu.add(btnAddLinha, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 140, -1));
 
         btnAtualizarLinha.setText("Atualizar");
         btnAtualizarLinha.addActionListener(new java.awt.event.ActionListener() {
@@ -319,11 +319,11 @@ public class JanelaConsulta extends javax.swing.JFrame {
         lstLinhas.setModel(lstModel);  
     }//GEN-LAST:event_btnTodasLinhasSelecionadasActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLinhaActionPerformed
         // TODO add your handling code here:
         CadastradorDeLinha cadastro = new CadastradorDeLinha(_linhasService);
         cadastro.setVisible(rootPaneCheckingEnabled);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddLinhaActionPerformed
 
     private void btnAtualizarLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarLinhaActionPerformed
         // TODO add your handling code here:
@@ -363,6 +363,7 @@ public class JanelaConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddByRaio;
+    private javax.swing.JButton btnAddLinha;
     private javax.swing.JButton btnAddParada;
     private javax.swing.JButton btnAtualizaLinhas;
     private javax.swing.JButton btnAtualizarLinha;
@@ -375,7 +376,6 @@ public class JanelaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton btnTodasAsParadas;
     private javax.swing.JButton btnTodasLinhasSelecionadas;
     private javax.swing.JComboBox comboLinhas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
